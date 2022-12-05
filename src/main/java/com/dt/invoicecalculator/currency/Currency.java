@@ -3,23 +3,24 @@ package com.dt.invoicecalculator.currency;
 import java.math.BigDecimal;
 
 public class Currency {
-    private final String code;
-    private final BigDecimal exchangeRate;
 
-    public Currency(final String code, final BigDecimal exchangeRate) {
-        this.code = code;
-        this.exchangeRate = exchangeRate;
-    }
+  private final String code;
+  private final BigDecimal exchangeRate;
 
-    public String getCode() {
-        return code;
-    }
+  public Currency(final String code, final BigDecimal exchangeRate) {
+    this.code = code;
+    this.exchangeRate = exchangeRate;
+  }
 
-    public BigDecimal getExchangeRate() {
-        return exchangeRate;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public boolean isDefault() {
-        return exchangeRate.compareTo(new BigDecimal(1)) == 0;
-    }
+  public BigDecimal getExchangeRate() {
+    return exchangeRate;
+  }
+
+  public boolean isDefault() {
+    return exchangeRate.compareTo(new BigDecimal(1)) == 0;
+  }
 }

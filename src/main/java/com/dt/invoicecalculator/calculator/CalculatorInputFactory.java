@@ -8,24 +8,24 @@ import java.util.List;
 @Component
 public final class CalculatorInputFactory {
 
-    public CalculatorInput buildFromApplicationArgs(ApplicationArguments args) {
-        String filePath = getArgumentValue(args.getOptionValues("filePath"));
-        String currencyList = getArgumentValue(args.getOptionValues("currencyList"));
-        String outputCurrency = getArgumentValue(args.getOptionValues("outputCurrency"));
-        String filterByVat = getArgumentValue(args.getOptionValues("filterByVat"));
+  public CalculatorInput buildFromApplicationArgs(ApplicationArguments args) {
+    String filePath = getArgumentValue(args.getOptionValues("filePath"));
+    String currencyList = getArgumentValue(args.getOptionValues("currencyList"));
+    String outputCurrency = getArgumentValue(args.getOptionValues("outputCurrency"));
+    String filterByVat = getArgumentValue(args.getOptionValues("filterByVat"));
 
-        if (filterByVat == null) {
-            return new CalculatorInput(filePath, currencyList, outputCurrency);
-        }
-
-        return new CalculatorInput(filePath, currencyList, outputCurrency, filterByVat);
+    if (filterByVat == null) {
+      return new CalculatorInput(filePath, currencyList, outputCurrency);
     }
 
-    private String getArgumentValue(List<String> argumentList) {
-        if (argumentList == null || argumentList.isEmpty()) {
-            return null;
-        }
+    return new CalculatorInput(filePath, currencyList, outputCurrency, filterByVat);
+  }
 
-        return argumentList.get(argumentList.size() - 1);
+  private String getArgumentValue(List<String> argumentList) {
+    if (argumentList == null || argumentList.isEmpty()) {
+      return null;
     }
+
+    return argumentList.get(argumentList.size() - 1);
+  }
 }

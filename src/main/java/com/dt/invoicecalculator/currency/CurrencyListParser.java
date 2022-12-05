@@ -9,22 +9,22 @@ import java.util.List;
 @Component
 public final class CurrencyListParser {
 
-    private static final char listDelimiter = ',';
-    private static final char itemDelimiter = ':';
+  private static final char listDelimiter = ',';
+  private static final char itemDelimiter = ':';
 
-    public List<Currency> parseList(String list) throws MalformedCurrencyListException {
-        List<Currency> currencies = new ArrayList<>();
+  public List<Currency> parseList(String list) throws MalformedCurrencyListException {
+    List<Currency> currencies = new ArrayList<>();
 
-        String[] items = list.split(String.valueOf(listDelimiter));
-        for (String item: items) {
-            String[] currencyToRate = item.split(String.valueOf(itemDelimiter));
-            if (currencyToRate.length != 2) {
-                throw new MalformedCurrencyListException(list);
-            }
+    String[] items = list.split(String.valueOf(listDelimiter));
+    for (String item : items) {
+      String[] currencyToRate = item.split(String.valueOf(itemDelimiter));
+      if (currencyToRate.length != 2) {
+        throw new MalformedCurrencyListException(list);
+      }
 
-            currencies.add(new Currency(currencyToRate[0], new BigDecimal(currencyToRate[1])));
-        }
-
-        return currencies;
+      currencies.add(new Currency(currencyToRate[0], new BigDecimal(currencyToRate[1])));
     }
+
+    return currencies;
+  }
 }

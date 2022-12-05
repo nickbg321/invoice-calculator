@@ -8,17 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalculatorConsoleRunner implements ApplicationRunner {
 
-    private final CalculatorService calculatorService;
-    private final CalculatorInputFactory calculatorInputFactory;
+  private final CalculatorService calculatorService;
+  private final CalculatorInputFactory calculatorInputFactory;
 
-    public CalculatorConsoleRunner(final CalculatorService calculatorService, final CalculatorInputFactory calculatorInputFactory) {
-        this.calculatorService = calculatorService;
-        this.calculatorInputFactory = calculatorInputFactory;
-    }
+  public CalculatorConsoleRunner(final CalculatorService calculatorService,
+      final CalculatorInputFactory calculatorInputFactory) {
+    this.calculatorService = calculatorService;
+    this.calculatorInputFactory = calculatorInputFactory;
+  }
 
-    @Override
-    public void run(ApplicationArguments args) throws MalformedCurrencyListException {
-        CalculatorInput inputDto = calculatorInputFactory.buildFromApplicationArgs(args);
-        calculatorService.calculate(inputDto);
-    }
+  @Override
+  public void run(ApplicationArguments args) throws MalformedCurrencyListException {
+    CalculatorInput inputDto = calculatorInputFactory.buildFromApplicationArgs(args);
+    calculatorService.calculate(inputDto);
+  }
 }
