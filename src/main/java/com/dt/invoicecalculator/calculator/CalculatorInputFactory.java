@@ -1,28 +1,14 @@
 package com.dt.invoicecalculator.calculator;
 
-import com.dt.invoicecalculator.currency.MalformedCurrencyListException;
 import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class CalculatorRunner implements ApplicationRunner {
+public final class CalculatorInputFactory {
 
-    private final CalculatorService calculatorService;
-
-    public CalculatorRunner(final CalculatorService calculatorService) {
-        this.calculatorService = calculatorService;
-    }
-
-    @Override
-    public void run(ApplicationArguments args) throws MalformedCurrencyListException {
-        CalculatorInput inputDto = buildInputDto(args);
-        calculatorService.calculate(inputDto);
-    }
-
-    private CalculatorInput buildInputDto(ApplicationArguments args) {
+    public CalculatorInput buildFromApplicationArgs(ApplicationArguments args) {
         String filePath = getArgumentValue(args.getOptionValues("filePath"));
         String currencyList = getArgumentValue(args.getOptionValues("currencyList"));
         String outputCurrency = getArgumentValue(args.getOptionValues("outputCurrency"));
