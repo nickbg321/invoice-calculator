@@ -2,6 +2,7 @@ package com.dt.invoicecalculator.calculator;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public final class CalculatorInput {
 
@@ -10,9 +11,11 @@ public final class CalculatorInput {
     private final String filePath;
 
     @NotBlank
+    @Pattern(regexp = "", message = "Currency list must match the following format: EUR:1,USD:0.987,GBP:0.878")
     private final String currencyList;
 
     @NotBlank
+    @Pattern(regexp = "^[A-Z]{3}$", message = "Output currency must be a valid ISO 4217 value (BGN or EUR for e.g.)")
     private final String outputCurrency;
 
     private String filterByVat;

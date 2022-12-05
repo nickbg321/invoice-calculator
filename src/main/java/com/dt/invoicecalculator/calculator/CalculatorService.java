@@ -11,12 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 @Component
-//@Validated
+@Validated
 public class CalculatorService {
     @Autowired
     private CurrencyListParser currencyListParser;
 
-    public void calculate(CalculatorInput inputDto) throws MalformedCurrencyListException {
+    public void calculate(@Valid CalculatorInput inputDto) throws MalformedCurrencyListException {
         System.out.println(inputDto.getFilePath());
         System.out.println(inputDto.getCurrencyList());
         System.out.println(inputDto.getOutputCurrency());
