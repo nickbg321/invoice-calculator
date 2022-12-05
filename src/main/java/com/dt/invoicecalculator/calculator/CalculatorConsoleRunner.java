@@ -1,6 +1,5 @@
 package com.dt.invoicecalculator.calculator;
 
-import com.dt.invoicecalculator.currency.MalformedCurrencyListException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ public class CalculatorConsoleRunner implements ApplicationRunner {
   }
 
   @Override
-  public void run(ApplicationArguments args) throws MalformedCurrencyListException {
+  public void run(ApplicationArguments args) {
     CalculatorInput inputDto = calculatorInputFactory.buildFromApplicationArgs(args);
     calculatorService.calculate(inputDto);
   }

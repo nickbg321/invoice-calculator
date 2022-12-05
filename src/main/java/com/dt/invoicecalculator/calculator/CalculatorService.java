@@ -2,7 +2,6 @@ package com.dt.invoicecalculator.calculator;
 
 import com.dt.invoicecalculator.currency.Currency;
 import com.dt.invoicecalculator.currency.CurrencyListParser;
-import com.dt.invoicecalculator.currency.MalformedCurrencyListException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +16,7 @@ public class CalculatorService {
   @Autowired
   private CurrencyListParser currencyListParser;
 
-  public void calculate(@Valid CalculatorInput inputDto) throws MalformedCurrencyListException {
+  public void calculate(@Valid CalculatorInput inputDto) {
     System.out.println(inputDto.getFilePath());
     System.out.println(inputDto.getCurrencyList());
     System.out.println(inputDto.getOutputCurrency());
