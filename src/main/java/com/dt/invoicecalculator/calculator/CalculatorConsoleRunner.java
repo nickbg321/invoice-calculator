@@ -4,6 +4,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.FileNotFoundException;
+
 @Component
 public class CalculatorConsoleRunner implements ApplicationRunner {
 
@@ -17,7 +19,7 @@ public class CalculatorConsoleRunner implements ApplicationRunner {
   }
 
   @Override
-  public void run(ApplicationArguments args) {
+  public void run(ApplicationArguments args) throws FileNotFoundException {
     CalculatorInput inputDto = calculatorInputFactory.buildFromApplicationArgs(args);
     calculatorService.calculate(inputDto);
   }
