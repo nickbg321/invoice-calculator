@@ -9,18 +9,18 @@ import java.io.FileNotFoundException;
 @Component
 public class CalculatorConsoleRunner implements ApplicationRunner {
 
-  private final CalculatorService calculatorService;
+  private final Calculator calculator;
   private final CalculatorInputFactory calculatorInputFactory;
 
-  public CalculatorConsoleRunner(final CalculatorService calculatorService,
+  public CalculatorConsoleRunner(final Calculator calculator,
       final CalculatorInputFactory calculatorInputFactory) {
-    this.calculatorService = calculatorService;
+    this.calculator = calculator;
     this.calculatorInputFactory = calculatorInputFactory;
   }
 
   @Override
   public void run(ApplicationArguments args) throws FileNotFoundException {
-    CalculatorInput inputDto = calculatorInputFactory.buildFromApplicationArgs(args);
-    calculatorService.calculate(inputDto);
+    CalculatorInput input = calculatorInputFactory.buildFromApplicationArgs(args);
+    calculator.calculate(input);
   }
 }

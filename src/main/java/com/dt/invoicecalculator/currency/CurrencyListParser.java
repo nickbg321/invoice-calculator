@@ -1,10 +1,9 @@
 package com.dt.invoicecalculator.currency;
 
+import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public final class CurrencyListParser {
@@ -12,8 +11,8 @@ public final class CurrencyListParser {
   private static final char listDelimiter = ',';
   private static final char itemDelimiter = ':';
 
-  public List<Currency> parseList(String list) {
-    List<Currency> currencies = new ArrayList<>();
+  public HashMap<String, Currency> parseList(String list) {
+    HashMap<String, Currency> currencies = new HashMap<>();
 
     String[] items = list.split(String.valueOf(listDelimiter));
     for (String item : items) {
@@ -22,7 +21,8 @@ public final class CurrencyListParser {
         continue;
       }
 
-      currencies.add(new Currency(currencyToRate[0], new BigDecimal(currencyToRate[1])));
+      Currency currency = new Currency(currencyToRate[0], new BigDecimal(currencyToRate[1]));
+      currencies.put(currencyToRate[0], currency);
     }
 
     return currencies;
