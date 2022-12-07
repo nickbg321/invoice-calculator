@@ -14,4 +14,14 @@ public enum DocumentType {
   public int getType() {
     return type;
   }
+
+  public static DocumentType valueOf(int type) {
+    for (DocumentType documentType: values()) {
+      if (documentType.getType() == type) {
+        return documentType;
+      }
+    }
+
+    return null;
+  }
 }

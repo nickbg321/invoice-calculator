@@ -14,7 +14,7 @@ public final class Document {
   private String vatNumber;
 
   @CsvBindByName(column = "type", required = true)
-  private DocumentType type;
+  private int type;
 
   @CsvBindByName(column = "Parent document")
   private int parentId;
@@ -46,11 +46,11 @@ public final class Document {
     this.vatNumber = vatNumber;
   }
 
-  public DocumentType getType() {
+  public int getType() {
     return type;
   }
 
-  public void setType(DocumentType type) {
+  public void setType(int type) {
     this.type = type;
   }
 

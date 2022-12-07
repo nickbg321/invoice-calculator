@@ -26,7 +26,5 @@ public class Calculator {
   public void calculate(@Valid CalculatorInput inputDto) throws FileNotFoundException {
     List<Document> documents = documentReader.read(inputDto.getFilePath());
     HashMap<String, Currency> currencies = currencyListParser.parseList(inputDto.getCurrencyList());
-
-    System.out.println(currencies.get("EUR"));
   }
 }

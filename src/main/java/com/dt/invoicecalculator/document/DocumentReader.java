@@ -13,6 +13,7 @@ import java.util.List;
 public final class DocumentReader {
 
   public List<Document> read(String filePath) throws FileNotFoundException {
-    return new CsvToBeanBuilder<Document>(new FileReader(filePath)).withType(Document.class).build().parse();
+    return new CsvToBeanBuilder<Document>(new FileReader(filePath)).withType(Document.class).build()
+        .parse();
   }
 }
