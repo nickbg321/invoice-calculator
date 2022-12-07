@@ -1,9 +1,11 @@
 package com.dt.invoicecalculator.calculator;
 
+import com.dt.invoicecalculator.currency.validation.OutputCurrencyDefined;
 import com.dt.invoicecalculator.document.validation.FileExists;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+@OutputCurrencyDefined
 public final class CalculatorInput {
 
   @NotBlank
