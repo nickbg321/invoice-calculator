@@ -15,10 +15,10 @@ public final class CalculatorInput {
       regexp = "^([A-Z]{3}:((\\d+\\.\\d+)|(\\d+)),?)+$",
       message = "Currency list must match the following format: EUR:1,USD:0.987,GBP:0.878"
   )
-//  @Pattern(
-//      regexp = "",
-//      message = "Default currency must be provided"
-//  )
+  @Pattern(
+      regexp = "^.*[A-Z]{3}:1(?![0-9.]).*",
+      message = "Default currency must be provided"
+  )
   private final String currencyList;
 
   @NotBlank
