@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class CurrencyListParser {
+public class CurrencyListParser {
 
   private static final char listDelimiter = ',';
   private static final char itemDelimiter = ':';

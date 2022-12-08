@@ -2,7 +2,6 @@ package com.dt.invoicecalculator.service.calculator;
 
 import com.dt.invoicecalculator.dto.CalculatorInputDto;
 import com.dt.invoicecalculator.dto.factory.CalculatorInputDtoFactory;
-import java.io.FileNotFoundException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ public class CalculatorConsoleRunner implements ApplicationRunner {
   }
 
   @Override
-  public void run(ApplicationArguments args) throws FileNotFoundException {
+  public void run(ApplicationArguments args) throws Exception {
     CalculatorInputDto input = calculatorInputDtoFactory.buildFromApplicationArgs(args);
     calculator.calculate(input);
   }

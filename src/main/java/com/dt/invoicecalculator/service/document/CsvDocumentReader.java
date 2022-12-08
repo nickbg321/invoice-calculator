@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class DocumentReader {
+public final class CsvDocumentReader implements DocumentReaderInterface {
 
   public List<DocumentDto> read(String filePath) throws FileNotFoundException {
     return new CsvToBeanBuilder<DocumentDto>(new FileReader(filePath)).withType(DocumentDto.class)

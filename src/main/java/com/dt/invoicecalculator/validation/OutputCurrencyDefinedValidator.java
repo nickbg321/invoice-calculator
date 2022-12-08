@@ -4,7 +4,7 @@ import com.dt.invoicecalculator.dto.CalculatorInputDto;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class OutputCurrencyDefinedValidator implements
+public final class OutputCurrencyDefinedValidator implements
     ConstraintValidator<OutputCurrencyDefined, CalculatorInputDto> {
 
   @Override

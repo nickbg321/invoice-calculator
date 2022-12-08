@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 @OutputCurrencyDefined
-public final class CalculatorInputDto {
+public class CalculatorInputDto {
 
   @NotBlank
   @FileExists

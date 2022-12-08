@@ -6,7 +6,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class CalculatorInputDtoFactory {
+public class CalculatorInputDtoFactory {
 
   public CalculatorInputDto buildFromApplicationArgs(ApplicationArguments args) {
     String filePath = getArgumentValue(args.getOptionValues("filePath"));
