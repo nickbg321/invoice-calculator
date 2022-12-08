@@ -1,5 +1,7 @@
 package com.dt.invoicecalculator.service.document;
 
+import com.dt.invoicecalculator.exception.UnsupportedDocumentTypeException;
+
 public enum DocumentType {
   INVOICE(1),
   CREDIT_NOTE(2),
@@ -15,13 +17,13 @@ public enum DocumentType {
     return type;
   }
 
-  public static DocumentType valueOf(int type) {
-    for (DocumentType documentType: values()) {
+  public static DocumentType valueOf(int type) throws UnsupportedDocumentTypeException {
+    for (DocumentType documentType : values()) {
       if (documentType.getType() == type) {
         return documentType;
       }
     }
 
-    return null;
+    throw new UnsupportedDocumentTypeException(type);
   }
 }

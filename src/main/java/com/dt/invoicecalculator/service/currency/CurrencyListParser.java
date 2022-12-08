@@ -1,7 +1,6 @@
 package com.dt.invoicecalculator.service.currency;
 
 import com.dt.invoicecalculator.value.Currency;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,7 @@ public class CurrencyListParser {
         continue;
       }
 
-      Currency currency = new Currency(currencyToRate[0], new BigDecimal(currencyToRate[1]));
+      Currency currency = new Currency(currencyToRate[0], currencyToRate[1]);
       currencies.put(currencyToRate[0], currency);
     }
 

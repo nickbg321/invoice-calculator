@@ -22,6 +22,9 @@ public class DocumentDto {
   @CsvBindByName(column = "Currency", required = true)
   private String currencyCode;
 
+  @CsvBindByName(column = "Total", required = true)
+  private String total;
+
   public int getNumber() {
     return number;
   }
@@ -68,5 +71,13 @@ public class DocumentDto {
 
   public void setCurrencyCode(String currencyCode) {
     this.currencyCode = currencyCode;
+  }
+
+  public String getTotal() {
+    return total;
+  }
+
+  public void setTotal(String total) {
+    this.total = total;
   }
 }
