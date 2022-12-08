@@ -1,6 +1,6 @@
 package com.dt.invoicecalculator.service.currency;
 
-import com.dt.invoicecalculator.entity.Currency;
+import com.dt.invoicecalculator.value.Currency;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import org.springframework.stereotype.Component;

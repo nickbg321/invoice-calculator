@@ -2,9 +2,9 @@ package com.dt.invoicecalculator.service.calculator;
 
 import com.dt.invoicecalculator.dto.CalculatorInputDto;
 import com.dt.invoicecalculator.dto.DocumentDto;
-import com.dt.invoicecalculator.entity.Currency;
 import com.dt.invoicecalculator.service.currency.CurrencyListParser;
 import com.dt.invoicecalculator.service.document.DocumentReader;
+import com.dt.invoicecalculator.value.Currency;
 import jakarta.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
