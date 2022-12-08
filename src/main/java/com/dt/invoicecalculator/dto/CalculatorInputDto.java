@@ -1,12 +1,12 @@
-package com.dt.invoicecalculator.calculator;
+package com.dt.invoicecalculator.dto;
 
-import com.dt.invoicecalculator.currency.validation.OutputCurrencyDefined;
-import com.dt.invoicecalculator.document.validation.FileExists;
+import com.dt.invoicecalculator.validation.FileExists;
+import com.dt.invoicecalculator.validation.OutputCurrencyDefined;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 @OutputCurrencyDefined
-public final class CalculatorInput {
+public final class CalculatorInputDto {
 
   @NotBlank
   @FileExists
@@ -32,14 +32,14 @@ public final class CalculatorInput {
 
   private String filterByVat;
 
-  public CalculatorInput(final String filePath, final String currencyList,
+  public CalculatorInputDto(final String filePath, final String currencyList,
       final String outputCurrency) {
     this.filePath = filePath;
     this.currencyList = currencyList;
     this.outputCurrency = outputCurrency;
   }
 
-  public CalculatorInput(final String filePath, final String currencyList,
+  public CalculatorInputDto(final String filePath, final String currencyList,
       final String outputCurrency, final String filterByVat) {
     this(filePath, currencyList, outputCurrency);
     this.filterByVat = filterByVat;

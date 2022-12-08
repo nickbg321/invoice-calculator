@@ -1,9 +1,9 @@
-package com.dt.invoicecalculator.currency;
+package com.dt.invoicecalculator.service.currency;
 
+import com.dt.invoicecalculator.entity.Currency;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public final class CurrencyListParser {

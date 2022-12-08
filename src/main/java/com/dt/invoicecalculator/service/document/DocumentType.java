@@ -1,4 +1,4 @@
-package com.dt.invoicecalculator.document;
+package com.dt.invoicecalculator.service.document;
 
 public enum DocumentType {
   INVOICE(1),

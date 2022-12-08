@@ -1,4 +1,4 @@
-package com.dt.invoicecalculator.currency;
+package com.dt.invoicecalculator.entity;
 
 import java.math.BigDecimal;
 

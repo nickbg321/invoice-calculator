@@ -1,4 +1,4 @@
-package com.dt.invoicecalculator.document.validation;
+package com.dt.invoicecalculator.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

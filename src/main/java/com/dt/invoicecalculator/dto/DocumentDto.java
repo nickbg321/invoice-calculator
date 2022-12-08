@@ -1,8 +1,8 @@
-package com.dt.invoicecalculator.document;
+package com.dt.invoicecalculator.dto;
 
 import com.opencsv.bean.CsvBindByName;
 
-public final class Document {
+public final class DocumentDto {
 
   @CsvBindByName(column = "Document number", required = true)
   private int number;
