@@ -42,6 +42,11 @@ public class Calculator {
 
     HashMap<String, Money> totalPerCustomer = new HashMap<>();
     for (DocumentDto documentDto : documentDtos) {
+      if (inputDto.getFilterByVat() != null && !inputDto.getFilterByVat()
+          .equals(documentDto.getVatNumber())) {
+        continue;
+      }
+
       Currency currency = currencies.get(documentDto.getCurrencyCode());
       if (currency == null) {
         throw new UnsupportedCurrencyException(documentDto.getCurrencyCode());
@@ -67,9 +72,7 @@ public class Calculator {
     }
 
     List<Customer> customers = new ArrayList<>();
-    totalPerCustomer.forEach((key, value) -> {
-      customers.add(new Customer(key, value));
-    });
+    totalPerCustomer.forEach((key, value) -> customers.add(new Customer(key, value)));
 
     return customers;
   }
