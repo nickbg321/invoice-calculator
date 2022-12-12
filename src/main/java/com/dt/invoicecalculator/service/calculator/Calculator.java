@@ -6,6 +6,7 @@ import com.dt.invoicecalculator.exception.UnsupportedCurrencyException;
 import com.dt.invoicecalculator.service.currency.CurrencyExchange;
 import com.dt.invoicecalculator.service.currency.CurrencyListParser;
 import com.dt.invoicecalculator.service.document.CsvDocumentReader;
+import com.dt.invoicecalculator.service.document.DocumentParentValidator;
 import com.dt.invoicecalculator.service.document.DocumentReaderInterface;
 import com.dt.invoicecalculator.service.document.DocumentType;
 import com.dt.invoicecalculator.value.Currency;
@@ -25,12 +26,15 @@ public class Calculator {
   private final CurrencyListParser currencyListParser;
   private final DocumentReaderInterface documentReaderInterface;
   private final CurrencyExchange currencyExchange;
+  private final DocumentParentValidator documentParentValidator;
 
   public Calculator(final CurrencyListParser currencyListParser,
-      final CsvDocumentReader documentReaderInterface, final CurrencyExchange currencyExchange) {
+      final CsvDocumentReader documentReaderInterface, final CurrencyExchange currencyExchange,
+      final DocumentParentValidator documentParentValidator) {
     this.currencyListParser = currencyListParser;
     this.documentReaderInterface = documentReaderInterface;
     this.currencyExchange = currencyExchange;
+    this.documentParentValidator = documentParentValidator;
   }
 
   public List<Customer> calculate(@Valid CalculatorInputDto inputDto) throws Exception {
@@ -39,6 +43,7 @@ public class Calculator {
     Currency outputCurrency = currencies.get(inputDto.getOutputCurrency());
 
     currencyExchange.setCurrencyList(currencies);
+    documentParentValidator.checkDocumentParents(documentDtos);
 
     HashMap<String, Money> totalPerCustomer = new HashMap<>();
     for (DocumentDto documentDto : documentDtos) {
@@ -47,22 +52,19 @@ public class Calculator {
         continue;
       }
 
-      Currency currency = currencies.get(documentDto.getCurrencyCode());
-      if (currency == null) {
+      if (currencies.get(documentDto.getCurrencyCode()) == null) {
         throw new UnsupportedCurrencyException(documentDto.getCurrencyCode());
       }
 
       Money exchangedMoney = currencyExchange.exchange(
           new Money(documentDto.getTotal(), currencies.get(documentDto.getCurrencyCode())),
-          outputCurrency
-      );
+          outputCurrency);
 
       if (!totalPerCustomer.containsKey(documentDto.getCustomerName())) {
         totalPerCustomer.put(documentDto.getCustomerName(), new Money(outputCurrency));
       }
 
       Money total = totalPerCustomer.get(documentDto.getCustomerName());
-
       switch (DocumentType.valueOf(documentDto.getType())) {
         case DEBIT_NOTE, INVOICE ->
             totalPerCustomer.put(documentDto.getCustomerName(), total.add(exchangedMoney));
@@ -72,7 +74,7 @@ public class Calculator {
     }
 
     List<Customer> customers = new ArrayList<>();
-    totalPerCustomer.forEach((key, value) -> customers.add(new Customer(key, value)));
+    totalPerCustomer.forEach((name, total) -> customers.add(new Customer(name, total)));
 
     return customers;
   }

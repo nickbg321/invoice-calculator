@@ -5,7 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 public class DocumentDto {
 
   @CsvBindByName(column = "Document number", required = true)
-  private int number;
+  private int id;
 
   @CsvBindByName(column = "Customer", required = true)
   private String customerName;
@@ -25,12 +25,12 @@ public class DocumentDto {
   @CsvBindByName(column = "Total", required = true)
   private String total;
 
-  public int getNumber() {
-    return number;
+  public int getId() {
+    return id;
   }
 
-  public void setNumber(int number) {
-    this.number = number;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCustomerName() {
