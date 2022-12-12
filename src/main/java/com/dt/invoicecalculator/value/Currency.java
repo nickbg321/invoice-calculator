@@ -2,7 +2,9 @@ package com.dt.invoicecalculator.value;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import lombok.Getter;
 
+@Getter
 public class Currency {
 
   private final String code;
@@ -15,14 +17,6 @@ public class Currency {
 
   public Currency(final String code, final String exchangeRate) {
     this(code, new BigDecimal(exchangeRate));
-  }
-
-  public String getCode() {
-    return code;
-  }
-
-  public BigDecimal getExchangeRate() {
-    return exchangeRate;
   }
 
   public boolean isDefault() {

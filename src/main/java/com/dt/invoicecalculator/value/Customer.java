@@ -1,5 +1,8 @@
 package com.dt.invoicecalculator.value;
 
+import lombok.Getter;
+
+@Getter
 public class Customer {
 
   private final String name;
@@ -8,13 +11,5 @@ public class Customer {
   public Customer(String name, Money total) {
     this.name = name;
     this.total = total;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Money getTotal() {
-    return total;
   }
 }

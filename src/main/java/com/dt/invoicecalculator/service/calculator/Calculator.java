@@ -43,7 +43,7 @@ public class Calculator {
     Currency outputCurrency = currencies.get(inputDto.getOutputCurrency());
 
     currencyExchange.setCurrencyList(currencies);
-    documentParentValidator.checkDocumentParents(documentDtos);
+    documentParentValidator.validateParents(documentDtos);
 
     HashMap<String, Money> totalPerCustomer = new HashMap<>();
     for (DocumentDto documentDto : documentDtos) {

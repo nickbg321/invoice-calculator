@@ -4,7 +4,9 @@ import com.dt.invoicecalculator.validation.FileExists;
 import com.dt.invoicecalculator.validation.OutputCurrencyDefined;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
 
+@Getter
 @OutputCurrencyDefined
 public class CalculatorInputDto {
 
@@ -43,21 +45,5 @@ public class CalculatorInputDto {
       final String outputCurrency, final String filterByVat) {
     this(filePath, currencyList, outputCurrency);
     this.filterByVat = filterByVat;
-  }
-
-  public String getFilePath() {
-    return filePath;
-  }
-
-  public String getCurrencyList() {
-    return currencyList;
-  }
-
-  public String getOutputCurrency() {
-    return outputCurrency;
-  }
-
-  public String getFilterByVat() {
-    return filterByVat;
   }
 }

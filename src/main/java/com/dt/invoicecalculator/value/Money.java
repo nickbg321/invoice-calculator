@@ -2,7 +2,9 @@ package com.dt.invoicecalculator.value;
 
 import com.dt.invoicecalculator.exception.DifferentCurrencyException;
 import java.math.BigDecimal;
+import lombok.Getter;
 
+@Getter
 public class Money {
 
   private final BigDecimal amount;
@@ -19,14 +21,6 @@ public class Money {
 
   public Money(final Currency currency) {
     this(new BigDecimal(0), currency);
-  }
-
-  public BigDecimal getAmount() {
-    return amount;
-  }
-
-  public Currency getCurrency() {
-    return currency;
   }
 
   public Money add(Money money) throws DifferentCurrencyException {

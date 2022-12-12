@@ -1,7 +1,9 @@
 package com.dt.invoicecalculator.service.document;
 
 import com.dt.invoicecalculator.exception.UnsupportedDocumentTypeException;
+import lombok.Getter;
 
+@Getter
 public enum DocumentType {
   INVOICE(1),
   CREDIT_NOTE(2),
@@ -11,10 +13,6 @@ public enum DocumentType {
 
   DocumentType(final int type) {
     this.type = type;
-  }
-
-  public int getType() {
-    return type;
   }
 
   public static DocumentType valueOf(int type) throws UnsupportedDocumentTypeException {

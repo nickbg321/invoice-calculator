@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DocumentParentValidator {
 
-  public void checkDocumentParents(List<DocumentDto> documentDtos) throws Exception {
+  public void validateParents(List<DocumentDto> documentDtos) throws Exception {
     List<Integer> specifiedIds = new ArrayList<>();
     List<Integer> availableIds = new ArrayList<>();
 
