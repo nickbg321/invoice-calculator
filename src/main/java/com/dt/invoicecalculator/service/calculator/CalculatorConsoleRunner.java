@@ -2,7 +2,9 @@ package com.dt.invoicecalculator.service.calculator;
 
 import com.dt.invoicecalculator.dto.CalculatorInputDto;
 import com.dt.invoicecalculator.dto.factory.CalculatorInputDtoFactory;
+import com.dt.invoicecalculator.exception.UserException;
 import com.dt.invoicecalculator.value.Customer;
+import jakarta.validation.ConstraintViolationException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -25,14 +27,22 @@ public class CalculatorConsoleRunner implements ApplicationRunner {
   @Override
   public void run(ApplicationArguments args) throws Exception {
     CalculatorInputDto inputDto = calculatorInputDtoFactory.buildFromApplicationArgs(args);
-    List<Customer> customers = calculator.calculate(inputDto);
 
-    for (Customer customer : customers) {
-      BigDecimal total = customer.getTotal().getAmount().setScale(2, RoundingMode.HALF_UP);
-      String currencyCode = customer.getTotal().getCurrency().getCode();
+    try {
+      List<Customer> customers = calculator.calculate(inputDto);
 
-      System.out.println(
-          "Customer: " + customer.getName() + ", total: " + total + " " + currencyCode);
+      for (Customer customer : customers) {
+        BigDecimal total = customer.getTotal().getAmount().setScale(2, RoundingMode.HALF_UP);
+        String currencyCode = customer.getTotal().getCurrency().getCode();
+
+        System.out.println(
+            "Customer: " + customer.getName() + ", total: " + total + " " + currencyCode);
+      }
+    } catch (UserException e) {
+      System.out.println(e.getMessage());
+    } catch (ConstraintViolationException e) {
+      e.getConstraintViolations()
+          .forEach((constraintViolation) -> System.out.println(constraintViolation.getMessage()));
     }
   }
 }
