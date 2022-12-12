@@ -52,17 +52,13 @@ public class Calculator {
           outputCurrency
       );
 
-      System.out.println(documentDto.getTotal() + " " + documentDto.getCurrencyCode() + " = "
-          + exchangedMoney.getAmount() + " " + exchangedMoney.getCurrency().getCode());
-
       if (!totalPerCustomer.containsKey(documentDto.getCustomerName())) {
         totalPerCustomer.put(documentDto.getCustomerName(), new Money(outputCurrency));
       }
 
       Money total = totalPerCustomer.get(documentDto.getCustomerName());
 
-      DocumentType type = DocumentType.valueOf(documentDto.getType());
-      switch (type) {
+      switch (DocumentType.valueOf(documentDto.getType())) {
         case DEBIT_NOTE, INVOICE ->
             totalPerCustomer.put(documentDto.getCustomerName(), total.add(exchangedMoney));
         case CREDIT_NOTE ->

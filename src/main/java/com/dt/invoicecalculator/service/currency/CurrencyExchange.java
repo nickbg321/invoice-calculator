@@ -24,19 +24,14 @@ public class CurrencyExchange {
     }
 
     if (money.getCurrency().equals(getDefaultCurrency())) {
-      return new Money(
-          money.getAmount().multiply(outputCurrency.getExchangeRate()),
-          outputCurrency
-      );
-    } else {
-      BigDecimal defaultAmount = money.getAmount()
-          .divide(money.getCurrency().getExchangeRate(), RoundingMode.HALF_UP);
-
-      return new Money(
-          defaultAmount.multiply(outputCurrency.getExchangeRate()),
-          outputCurrency
-      );
+      return new Money(money.getAmount().multiply(outputCurrency.getExchangeRate()),
+          outputCurrency);
     }
+
+    BigDecimal defaultAmount = money.getAmount()
+        .divide(money.getCurrency().getExchangeRate(), 6, RoundingMode.HALF_UP);
+
+    return new Money(defaultAmount.multiply(outputCurrency.getExchangeRate()), outputCurrency);
   }
 
   private Currency getDefaultCurrency() throws MissingDefaultCurrencyException {
