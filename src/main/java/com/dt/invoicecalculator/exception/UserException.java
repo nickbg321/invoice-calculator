@@ -2,7 +2,7 @@ package com.dt.invoicecalculator.exception;
 
 abstract public class UserException extends Exception {
 
-  public UserException(String message) {
+  public UserException(final String message) {
     super(message);
   }
 }

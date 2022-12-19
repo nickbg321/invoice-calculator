@@ -5,7 +5,6 @@ import com.dt.invoicecalculator.dto.factory.CalculatorInputDtoFactory;
 import com.dt.invoicecalculator.exception.UserException;
 import com.dt.invoicecalculator.value.Customer;
 import jakarta.validation.ConstraintViolationException;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import org.springframework.boot.ApplicationArguments;
@@ -25,18 +24,17 @@ public class CalculatorConsoleRunner implements ApplicationRunner {
   }
 
   @Override
-  public void run(ApplicationArguments args) throws Exception {
-    CalculatorInputDto inputDto = calculatorInputDtoFactory.buildFromApplicationArgs(args);
+  public void run(final ApplicationArguments args) throws Exception {
+    final CalculatorInputDto inputDto = calculatorInputDtoFactory.buildFromApplicationArgs(args);
 
     try {
-      List<Customer> customers = calculator.calculate(inputDto);
+      final List<Customer> customers = calculator.calculate(inputDto);
 
       for (Customer customer : customers) {
-        BigDecimal total = customer.getTotal().getAmount().setScale(2, RoundingMode.HALF_UP);
-        String currencyCode = customer.getTotal().getCurrency().getCode();
-
         System.out.println(
-            "Customer: " + customer.getName() + ", total: " + total + " " + currencyCode);
+            "Customer: " + customer.getName() + ", total: " + customer.getTotal().getAmount()
+                .setScale(2, RoundingMode.HALF_UP) + " " + customer.getTotal().getCurrency()
+                .getCode());
       }
     } catch (UserException e) {
       System.out.println(e.getMessage());

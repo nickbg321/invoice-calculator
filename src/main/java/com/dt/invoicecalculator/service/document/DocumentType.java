@@ -15,7 +15,7 @@ public enum DocumentType {
     this.type = type;
   }
 
-  public static DocumentType valueOf(int type) throws UnsupportedDocumentTypeException {
+  public static DocumentType valueOf(final int type) throws UnsupportedDocumentTypeException {
     for (DocumentType documentType : values()) {
       if (documentType.getType() == type) {
         return documentType;

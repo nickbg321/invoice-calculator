@@ -37,15 +37,16 @@ public class Calculator {
     this.documentParentValidator = documentParentValidator;
   }
 
-  public List<Customer> calculate(@Valid CalculatorInputDto inputDto) throws Exception {
-    List<DocumentDto> documentDtos = documentReaderInterface.read(inputDto.getFilePath());
-    HashMap<String, Currency> currencies = currencyListParser.parseList(inputDto.getCurrencyList());
-    Currency outputCurrency = currencies.get(inputDto.getOutputCurrency());
+  public List<Customer> calculate(@Valid final CalculatorInputDto inputDto) throws Exception {
+    final List<DocumentDto> documentDtos = documentReaderInterface.read(inputDto.getFilePath());
+    final HashMap<String, Currency> currencies = currencyListParser.parseList(
+        inputDto.getCurrencyList());
+    final Currency outputCurrency = currencies.get(inputDto.getOutputCurrency());
 
     currencyExchange.setCurrencyList(currencies);
     documentParentValidator.validateParents(documentDtos);
 
-    HashMap<String, Money> totalPerCustomer = new HashMap<>();
+    final HashMap<String, Money> totalPerCustomer = new HashMap<>();
     for (DocumentDto documentDto : documentDtos) {
       if (inputDto.getFilterByVat() != null && !inputDto.getFilterByVat()
           .equals(documentDto.getVatNumber())) {
@@ -56,7 +57,7 @@ public class Calculator {
         throw new UnsupportedCurrencyException(documentDto.getCurrencyCode());
       }
 
-      Money exchangedMoney = currencyExchange.exchange(
+      final Money exchangedMoney = currencyExchange.exchange(
           new Money(documentDto.getTotal(), currencies.get(documentDto.getCurrencyCode())),
           outputCurrency);
 
@@ -64,7 +65,7 @@ public class Calculator {
         totalPerCustomer.put(documentDto.getCustomerName(), new Money(outputCurrency));
       }
 
-      Money total = totalPerCustomer.get(documentDto.getCustomerName());
+      final Money total = totalPerCustomer.get(documentDto.getCustomerName());
       switch (DocumentType.valueOf(documentDto.getType())) {
         case DEBIT_NOTE, INVOICE ->
             totalPerCustomer.put(documentDto.getCustomerName(), total.add(exchangedMoney));
@@ -73,7 +74,7 @@ public class Calculator {
       }
     }
 
-    List<Customer> customers = new ArrayList<>();
+    final List<Customer> customers = new ArrayList<>();
     totalPerCustomer.forEach((name, total) -> customers.add(new Customer(name, total)));
 
     return customers;

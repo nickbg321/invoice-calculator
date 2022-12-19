@@ -13,11 +13,11 @@ public class CurrencyExchange {
 
   private Map<String, Currency> currencyList;
 
-  public void setCurrencyList(Map<String, Currency> currencyList) {
+  public void setCurrencyList(final Map<String, Currency> currencyList) {
     this.currencyList = currencyList;
   }
 
-  public Money exchange(Money money, Currency outputCurrency)
+  public Money exchange(final Money money, final Currency outputCurrency)
       throws MissingDefaultCurrencyException {
     if (money.getCurrency().equals(outputCurrency)) {
       return money;

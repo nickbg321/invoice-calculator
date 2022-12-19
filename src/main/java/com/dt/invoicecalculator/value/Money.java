@@ -23,7 +23,7 @@ public class Money {
     this(new BigDecimal(0), currency);
   }
 
-  public Money add(Money money) throws DifferentCurrencyException {
+  public Money add(final Money money) throws DifferentCurrencyException {
     if (isDifferentCurrency(money)) {
       throw new DifferentCurrencyException();
     }
@@ -31,7 +31,7 @@ public class Money {
     return new Money(getAmount().add(money.getAmount()), getCurrency());
   }
 
-  public Money subtract(Money money) throws DifferentCurrencyException {
+  public Money subtract(final Money money) throws DifferentCurrencyException {
     if (isDifferentCurrency(money)) {
       throw new DifferentCurrencyException();
     }
@@ -39,7 +39,7 @@ public class Money {
     return new Money(getAmount().subtract(money.getAmount()), getCurrency());
   }
 
-  private boolean isDifferentCurrency(Money money) {
+  private boolean isDifferentCurrency(final Money money) {
     return !money.getCurrency().equals(this.currency);
   }
 }

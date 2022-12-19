@@ -10,8 +10,8 @@ public class CurrencyListParser {
   private static final char listDelimiter = ',';
   private static final char itemDelimiter = ':';
 
-  public HashMap<String, Currency> parseList(String list) {
-    HashMap<String, Currency> currencies = new HashMap<>();
+  public HashMap<String, Currency> parseList(final String list) {
+    final HashMap<String, Currency> currencies = new HashMap<>();
 
     String[] items = list.split(String.valueOf(listDelimiter));
     for (String item : items) {

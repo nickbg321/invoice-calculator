@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DocumentParentValidator {
 
-  public void validateParents(List<DocumentDto> documentDtos) throws Exception {
-    List<Integer> specifiedIds = new ArrayList<>();
-    List<Integer> availableIds = new ArrayList<>();
+  public void validateParents(final List<DocumentDto> documentDtos) throws Exception {
+    final List<Integer> specifiedIds = new ArrayList<>();
+    final List<Integer> availableIds = new ArrayList<>();
 
     for (DocumentDto documentDto : documentDtos) {
       switch (DocumentType.valueOf(documentDto.getType())) {

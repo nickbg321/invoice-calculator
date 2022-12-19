@@ -8,11 +8,12 @@ public final class OutputCurrencyDefinedValidator implements
     ConstraintValidator<OutputCurrencyDefined, CalculatorInputDto> {
 
   @Override
-  public void initialize(OutputCurrencyDefined outputCurrencyDefined) {
+  public void initialize(final OutputCurrencyDefined outputCurrencyDefined) {
   }
 
   @Override
-  public boolean isValid(CalculatorInputDto calculatorInputDto, ConstraintValidatorContext cxt) {
+  public boolean isValid(final CalculatorInputDto calculatorInputDto,
+      final ConstraintValidatorContext context) {
     if (calculatorInputDto == null) {
       return true;
     }
