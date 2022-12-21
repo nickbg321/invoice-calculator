@@ -48,8 +48,7 @@ public class DocumentParentValidatorTest {
     document2.setParentId(101);
     documents.add(document2);
 
-    assertThrows(MissingDocumentParentException.class, () -> {
-      documentParentValidator.validateParents(documents);
-    });
+    assertThrows(MissingDocumentParentException.class,
+        () -> documentParentValidator.validateParents(documents));
   }
 }

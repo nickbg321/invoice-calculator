@@ -59,8 +59,7 @@ public class CurrencyExchangeTest {
 
     currencyExchange.setCurrencyList(list);
 
-    assertThrows(MissingDefaultCurrencyException.class, () -> {
-      currencyExchange.exchange(new Money(currencyUSD), currencyGBP);
-    });
+    assertThrows(MissingDefaultCurrencyException.class,
+        () -> currencyExchange.exchange(new Money(currencyUSD), currencyGBP));
   }
 }
