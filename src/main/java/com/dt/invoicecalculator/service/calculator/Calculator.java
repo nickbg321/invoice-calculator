@@ -62,9 +62,7 @@ public class Calculator {
           new Money(documentDto.getTotal(), currencies.get(documentDto.getCurrencyCode())),
           outputCurrency);
 
-      if (!totalPerCustomer.containsKey(documentDto.getCustomerName())) {
-        totalPerCustomer.put(documentDto.getCustomerName(), new Money(outputCurrency));
-      }
+      totalPerCustomer.putIfAbsent(documentDto.getCustomerName(), new Money(outputCurrency));
 
       final Money total = totalPerCustomer.get(documentDto.getCustomerName());
       switch (DocumentType.valueOf(documentDto.getType())) {
