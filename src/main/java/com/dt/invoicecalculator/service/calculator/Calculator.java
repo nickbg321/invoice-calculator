@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
@@ -39,14 +40,14 @@ public class Calculator {
 
   public List<Customer> calculate(@Valid final CalculatorInputDto inputDto) throws Exception {
     final List<DocumentDto> documentDtos = documentReaderInterface.read(inputDto.getFilePath());
-    final HashMap<String, Currency> currencies = currencyListParser.parseList(
+    final Map<String, Currency> currencies = currencyListParser.parseList(
         inputDto.getCurrencyList());
     final Currency outputCurrency = currencies.get(inputDto.getOutputCurrency());
 
     currencyExchange.setCurrencyList(currencies);
     documentParentValidator.validateParents(documentDtos);
 
-    final HashMap<String, Money> totalPerCustomer = new HashMap<>();
+    final Map<String, Money> totalPerCustomer = new HashMap<>();
     for (DocumentDto documentDto : documentDtos) {
       if (inputDto.getFilterByVat() != null && !inputDto.getFilterByVat()
           .equals(documentDto.getVatNumber())) {

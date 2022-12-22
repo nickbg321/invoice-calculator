@@ -2,6 +2,7 @@ package com.dt.invoicecalculator.service.currency;
 
 import com.dt.invoicecalculator.value.Currency;
 import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,8 +11,8 @@ public class CurrencyListParser {
   private static final char listDelimiter = ',';
   private static final char itemDelimiter = ':';
 
-  public HashMap<String, Currency> parseList(final String list) {
-    final HashMap<String, Currency> currencies = new HashMap<>();
+  public Map<String, Currency> parseList(final String list) {
+    final Map<String, Currency> currencies = new HashMap<>();
 
     String[] items = list.split(String.valueOf(listDelimiter));
     for (String item : items) {
